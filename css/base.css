@@ -1,0 +1,20 @@
+* {padding:0px; margin:0px;}
+#header { padding-top:20px;}
+#wrapper { width:850px; margin:auto; }
+.content-box {  padding:10px;margin:10px;}
+
+/* fonts and other common stuff */
+.vlarge { font-size:40pt; }
+.cntr { text-align:center; }
+.large { font-size:20pt;}
+.large-link, a.large-link { padding:10px; background:green; color:#fff; border-radius: 10px;}
+.faded { color: #bbb;}
+.small { font-size:10pt; }
+.a { text-decoration:none; cursor:pointer; }
+.errbox {font-size:10pt; border:1px solid #aaa;}
+.w200 { width:200px; }
+.dispinlineblock { display : inline-block;}
+.clear { clear:both; }
+.fleft { float:left; }
+.fright { float:right; }
+.p10 { padding: 10px; } 
