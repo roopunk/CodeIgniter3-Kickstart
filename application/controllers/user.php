@@ -9,7 +9,7 @@
             $this->load->helper('form');        
             $this->load->library('form_validation');        
             
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|min_length[5]|max_length[40]|xss_clean');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|min_length[5]|max_length[40]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|matches[passconf]|md5');
             $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required');
 
@@ -45,7 +45,7 @@
             $this->load->helper('form');        
             $this->load->library('form_validation');        
             
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|min_length[5]|max_length[40]|xss_clean');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|min_length[5]|max_length[40]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|md5');
 
             if($this->form_validation->run() == false)
