@@ -8,9 +8,10 @@
         }
 
         function register($formdata) {
-            $email = (isset($formdata['email']))?$formdata['email']:false;
-            $pass  = (isset($formdata['password']))?$formdata['password']:false;
-            if(!$email or !$pass) return array('s' => false, 'm'=> "INSUFFICIENT_DATA");
+            $email = $formdata['email'];
+            $pass = $formdata['password'];
+            if(empty($email) || empty($pass)) 
+                return array('s' => false, 'm'=> "INSUFFICIENT_DATA");
             
             // check if this email id is already registered
             $result = $this->db->query("SELECT `email` FROM user WHERE `email` = ?", array($email));
@@ -24,22 +25,28 @@
         }
 
         function checkUser($formdata) {
-            $email = (isset($formdata['email']))?$formdata['email']:false;
-            $pass  = (isset($formdata['password']))?$formdata['password']:false;
-            if(!$email or !$pass) return array('s' => false, 'm'=> "INSUFFICIENT_DATA");
+            $email = $formdata['email'];
+            $pass  = $formdata['password'];
+
+            if(empty($email) || empty($pass)) 
+                return array('s' => false, 'm'=> "INSUFFICIENT_DATA");
             
             // check if this email id is registered
-            $result = $this->db->query("SELECT `email` FROM user WHERE `email` = ?", array($email));
+            $result = $this->db->query("SELECT `id`, `email`, `password` FROM user WHERE `email` = ?", array($email));
             $rows = $result->num_rows();
-            if($rows==0)
+            if($rows==0) {
                 return array('s' => false, 'm'=> "NO_SUCH_USER");
+            } else {
+                $row = $result->row_array();
+                $password = $row['password'];
 
-            // check if this email and password match
-            $result = $this->db->query("SELECT `id`,`email` FROM user WHERE `email` = ? and `password` = ? ", array($email, $pass));
-            $rows = $result->num_rows();
-            if($rows==0)
-                return array('s' => false, 'm'=> "NO_MATCH");
-            $id = $result->row()->id;
+                // checking password
+                if (!password_verify($pass, $password)) {
+                    return array('s' => false, 'm'=> "NO_MATCH");
+                }
+
+                $id = $row['id'];
+            }
 
             return array('s'=>true, 'm'=>'SUCCESSFUL', 'd'=>$id);
         }

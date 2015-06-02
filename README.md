@@ -8,7 +8,9 @@ updated to  **CODEIGNITER 3.0.0**
 
 ### Features
   - Codeigniter 3.0.0 out of the box
-  - Basic Login and Register functions with database interactions
+  - Basic Login and Register functions
+  - SHA1 password encryption
+  - Bootstrap 3.3.4
 
 ### Controllers
 The following cotrollers are included in the base package : 
@@ -20,7 +22,7 @@ The following cotrollers are included in the base package :
   - Copy the files into a web directory
   - Modify your application/config/config.php file with your base_url
   - Modify your application/config/database.php file with your database settings
-  - Import the sql file kickstart.sql. It will create two tables 'user' and 'ci_sessions'
+  - Create a database and import the sql file kickstart.sql to it. It will create two tables 'user' and 'ci_sessions'
 
 Thats it. 
 Kickstart your next codeigniter based web project!!

@@ -3,59 +3,75 @@
     class User extends CI_Controller {
         
         public function register() {
-            if($loggedIn = baseCheckLogin()) redirect('app/start');
-            $header = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);
+            // if the user is logged in, redirect to the app 
+            if($loggedIn = baseCheckLogin()) 
+                redirect('app/start');
 
             $this->load->helper('form');        
             $this->load->library('form_validation');        
             
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|min_length[5]|max_length[40]');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|matches[passconf]|md5');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|matches[passconf]');
             $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required');
 
-            if($this->form_validation->run() == false)
+            if($this->form_validation->run() == false) {
                 $body = $this->load->view('templates/register_form', '', true);
-            else {
+            } else {
                 $formdata = $this->input->post();
+                $formdata['password'] = password_hash($formdata['password'], PASSWORD_DEFAULT);
+
                 // process formdata to add it into the table
                 $this->load->model('user_model');
                 $result = $this->user_model->register($formdata);
-                if($result['s']) { // if status is true, then create a session for the user
+
+                // if registration successful, create a session
+                if($result['s']) {
                     $this->load->library('session');
                     $this->session->set_userdata(array('userid'=>$result['d']));
                     redirect("app/start");
                 } else {
-                    $body = "This email id is already registered. Please click <a href=\"".site_url("user/login")."\">here</a> to login.";
+                    if($result['m'] == 'INSUFFICIENT_DATA')
+                        $body = "Data is insufficient.";
+                    else if($result['m'] == 'ALREADY_REGISTERED')
+                        $body = "Looks like you've already registered.";
                 }
+
+                $body .= " Please click <a href=\"".site_url("user/login")."\">here</a> to login.";
             }
-            $data = array(
+
+            
+            $header = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);
+            $this->load->view('main', array(
                 'title' => 'Register',
                 'content' => $body,
                 'head' => $header
-            );
-            $this->load->view('main', $data); 
+            )); 
         }
 
 
 
         public function login() {
-            if($loggedIn = baseCheckLogin()) redirect('app/start');
-            $header = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);
-            
+            // if the user is logged in, redirect to the app 
+            if($loggedIn = baseCheckLogin()) 
+                redirect('app/start');
+
             $this->load->helper('form');        
             $this->load->library('form_validation');        
             
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|min_length[5]|max_length[40]');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|md5');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
 
-            if($this->form_validation->run() == false)
+            if($this->form_validation->run() == false) {
                 $body = $this->load->view('templates/login_form', '', true);
-            else {
+            } else {
                 $formdata = $this->input->post();
+
                 // process formdata to add it into the table
                 $this->load->model('user_model');
                 $result = $this->user_model->checkUser($formdata);
-                if($result['s']) { // if status is true, then create a session for the user
+
+                // if status is true, then create a session for the user
+                if($result['s']) {
                     $this->load->library('session');
                     $this->session->set_userdata(array('userid'=>$result['d']));
                     redirect("app/start");
@@ -71,12 +87,13 @@
                     $body = "Click <a href=\"".site_url("user/login")."\">here</a> to try again";
                 }
             }
-            $data = array(
+            
+            $header = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);
+            $this->load->view('main',  array(
                 'title' => 'Login',
                 'content' => $body,
                 'head' => $header
-            );
-            $this->load->view('main', $data); 
+            )); 
         }
 
         public function logout() {
