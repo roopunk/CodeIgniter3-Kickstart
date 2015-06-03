@@ -15,7 +15,7 @@
             $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required');
 
             if($this->form_validation->run() == false) {
-                $body = $this->load->view('templates/register_form', '', true);
+                $body = $this->load->view('user/register_form', '', true);
             } else {
                 $formdata = $this->input->post();
                 $formdata['password'] = password_hash($formdata['password'], PASSWORD_DEFAULT);
@@ -39,12 +39,9 @@
                 $body .= " Please click <a href=\"".site_url("user/login")."\">here</a> to login.";
             }
 
-            
-            $header = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);
             $this->load->view('main', array(
                 'title' => 'Register',
-                'content' => $body,
-                'head' => $header
+                'content' => $body
             )); 
         }
 
@@ -62,7 +59,7 @@
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
 
             if($this->form_validation->run() == false) {
-                $body = $this->load->view('templates/login_form', '', true);
+                $body = $this->load->view('user/login_form', '', true);
             } else {
                 $formdata = $this->input->post();
 
@@ -88,11 +85,9 @@
                 }
             }
             
-            $header = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);
             $this->load->view('main',  array(
                 'title' => 'Login',
-                'content' => $body,
-                'head' => $header
+                'content' => $body
             )); 
         }
 

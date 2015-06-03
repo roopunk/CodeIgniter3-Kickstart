@@ -11,16 +11,14 @@ class App extends CI_Controller {
 
     public function start() {
         $loggedIn = baseCheckLogin();
-        $head = $this->load->view("templates/header", array('loggedIn' => $loggedIn), true);
-        if (!$loggedIn)
+        if (!$loggedIn) {
             $content = 'Not logged in . Click <a href="' . site_url('user/login') . '">here</a> to login.';
-        else {
+        } else {
             $userid = $this->session->userdata('userid');
             $content = $this->load->view("app/start", array(), true);
         }
         $data = array(
             'title' => 'App | Start',
-            'head' => $head,
             'app' => true,
             'content' => $content
         );

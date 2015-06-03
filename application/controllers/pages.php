@@ -4,16 +4,28 @@ class Pages extends CI_Controller {
 
 	public function index()
 	{
-        $loggedIn = baseCheckLogin();
-        $head = $this->load->view('templates/header', array('loggedIn'=>$loggedIn), true);    
-        
         $data = array(
             'title' => "MySite | Home Page",
-            'content' => $this->load->view('pages/home_page', '', true),
-            'head' => $head
+            'content' => $this->load->view('pages/home_page', '', true)
         );
 		$this->load->view('main', $data);        
 	}
+
+    public function contact() {
+        $data = array(
+            'title' => "MySite | Home Page",
+            'content' => $this->load->view('pages/contact', '', true)
+        );
+        $this->load->view('main', $data);
+    }
+
+    public function about() {
+        $data = array(
+            'title' => "MySite | Home Page",
+            'content' => $this->load->view('pages/about', '', true)
+        );
+        $this->load->view('main', $data);
+    }
 }
 
 /* End of file pages.php */

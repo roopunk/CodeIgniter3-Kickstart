@@ -1,7 +1,50 @@
-* {padding:0px; margin:0px;}
-#header { padding-top:20px;}
-#wrapper { width:850px; margin:auto; }
-.content-box {  padding:10px;margin:10px;}
+* {
+	padding:0px; 
+	margin:0px;
+}
+
+body {
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+.form-custom {
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+}
+
+.form-custom .form-custom-heading, .form-custom .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-custom input.input-top {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: -1px;
+}
+
+.form-custom input.input-middle {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: -1px;
+}
+
+.form-custom input.input-bottom {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 10px;
+}
+
+.form-custom .form-control {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    position: relative;
+}
 
 /* fonts and other common stuff */
 .vlarge { font-size:40pt; }
