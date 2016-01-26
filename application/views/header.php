@@ -14,8 +14,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/pages/about">About</a></li>
-                <li><a href="/pages/contact">Contact</a></li>
+                <li><a href="<?php echo site_url('pages/about'); ?>">About</a></li>
+                <li><a href="<?php echo site_url('pages/contact'); ?>">Contact</a></li>
                 <?php 
                     if(!empty($loggedIn)) 
                         echo '<li><a href="'.site_url('user/logout').'">Logout</a></li>';
