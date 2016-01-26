@@ -26,3 +26,6 @@ The following cotrollers are included in the base package :
 
 Thats it. 
 Kickstart your next codeigniter based web project!!
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/roopunk/codeigniter3-kickstart/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
