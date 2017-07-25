@@ -4,10 +4,10 @@ So I've created this kickstart codeigniter module to kickstart my own projects a
 
 A CMS would have been an overkill with too many features and writing an app from scratch would have been reinventing the wheel. This is where this module will come in handy.
 
-updated to  **CODEIGNITER 3.0.0**
+updated to  **CODEIGNITER 3.1.5**
 
 ### Features
-  - Codeigniter 3.0.0 out of the box
+  - Codeigniter 3.1.5 out of the box
   - Basic Login and Register functions
   - Bcrypt password encryption
   - Bootstrap 3.3.4
