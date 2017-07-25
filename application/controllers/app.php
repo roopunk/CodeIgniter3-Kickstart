@@ -15,7 +15,7 @@ class App extends CI_Controller {
             $content = 'Not logged in . Click <a href="' . site_url('user/login') . '">here</a> to login.';
         } else {
             $userid = $this->session->userdata('userid');
-            $content = $this->load->view("app/start", array(), true);
+            $content = $this->load->view("app/start", array('email' => baseGetLoggedinEmail()), true);
         }
         $data = array(
             'title' => 'App | Start',

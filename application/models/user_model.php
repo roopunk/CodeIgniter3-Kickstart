@@ -21,7 +21,12 @@
         
             $this->db->query("INSERT INTO user (`email`, `password`) VALUES ( ?, ? )", array($email, $pass));
             $insert_id = $this->db->insert_id();
-            return array('s'=>true, 'm'=> "SUCCESSFUL", 'd' => $insert_id);
+            return [
+                's'=>true, 
+                'm'=> "SUCCESSFUL", 
+                'd' => $insert_id,
+                'email' => $email
+            ];
         }
 
         function checkUser($formdata) {
@@ -48,6 +53,11 @@
                 $id = $row['id'];
             }
 
-            return array('s'=>true, 'm'=>'SUCCESSFUL', 'd'=>$id);
+            return [
+                's'=>true, 
+                'm'=> "SUCCESSFUL", 
+                'd' => $id ,
+                'email' => $email
+            ];
         }
     }

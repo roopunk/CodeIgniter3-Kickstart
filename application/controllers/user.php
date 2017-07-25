@@ -28,6 +28,7 @@
                 if($result['s']) {
                     $this->load->library('session');
                     $this->session->set_userdata(array('userid'=>$result['d']));
+                    $this->session->set_userdata(array('email'=>$result['email']));
                     redirect("app/start");
                 } else {
                     if($result['m'] == 'INSUFFICIENT_DATA')
@@ -71,6 +72,7 @@
                 if($result['s']) {
                     $this->load->library('session');
                     $this->session->set_userdata(array('userid'=>$result['d']));
+                    $this->session->set_userdata(array('email'=>$result['email']));
                     redirect("app/start");
                 } else {
      
