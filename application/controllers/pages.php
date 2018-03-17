@@ -6,7 +6,8 @@ class Pages extends CI_Controller {
 	{
         $data = array(
             'title' => "MySite | Home Page",
-            'content' => $this->load->view('pages/home_page', '', true)
+            'content' => $this->load->view('pages/home_page', '', true),
+            'loggedIn' => baseCheckLogin()
         );
 		$this->load->view('main', $data);        
 	}
@@ -14,7 +15,8 @@ class Pages extends CI_Controller {
     public function contact() {
         $data = array(
             'title' => "MySite | Home Page",
-            'content' => $this->load->view('pages/contact', '', true)
+            'content' => $this->load->view('pages/contact', '', true),
+            'loggedIn' => baseCheckLogin()
         );
         $this->load->view('main', $data);
     }
@@ -22,7 +24,8 @@ class Pages extends CI_Controller {
     public function about() {
         $data = array(
             'title' => "MySite | Home Page",
-            'content' => $this->load->view('pages/about', '', true)
+            'content' => $this->load->view('pages/about', '', true),
+            'loggedIn' => baseCheckLogin()
         );
         $this->load->view('main', $data);
     }
